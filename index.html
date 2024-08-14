@@ -7,110 +7,193 @@
     <style>
         body {
             font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            color: #333;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            padding: 20px 40px;
+            max-width: 600px;
+            width: 100%;
             margin: 20px;
         }
+
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
         .question {
             margin-bottom: 20px;
         }
-        .result {
-            margin-top: 20px;
+
+        .question label {
+            display: block;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+
+        .question input[type="text"] {
+            width: 100%;
             padding: 10px;
-            border: 1px solid #ddd;
-            background-color: #f9f9f9;
+            font-size: 16px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+            margin-top: 5px;
+            box-sizing: border-box;
         }
+
+        .question input[type="text"]:focus {
+            border-color: #3498db;
+            outline: none;
+            box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
+        }
+
+        .submit-btn {
+            background-color: #3498db;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            font-size: 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 20px;
+        }
+
+        .submit-btn:hover {
+            background-color: #2980b9;
+        }
+
+        .results {
+            margin-top: 20px;
+        }
+
         .correct {
-            color: green;
+            color: #27ae60;
+            font-weight: bold;
         }
+
         .incorrect {
-            color: red;
+            color: #e74c3c;
+            font-weight: bold;
         }
-        input[type="text"] {
-            width: 30px;
-            text-align: center;
+
+        .results p {
+            margin: 5px 0;
+        }
+
+        .results p.correct::before {
+            content: "✔ ";
+        }
+
+        .results p.incorrect::before {
+            content: "✖ ";
         }
     </style>
 </head>
 <body>
 
-    <h1>Chemistry Balancing Equations Quiz</h1>
-    <form id="quizForm">
-        <div class="question">
-            <label for="q1">1. <input type="text" id="q1_1" name="q1_1" placeholder="1"> H₂ + <input type="text" id="q1_2" name="q1_2" placeholder="1"> N₂ → <input type="text" id="q1_3" name="q1_3" placeholder="1"> NH₃</label>
-        </div>
+    <div class="container">
+        <h1>Chemistry Balancing Equations Quiz</h1>
+        <form id="quizForm">
+            <div class="question">
+                <label for="q1">1. \( \text{H}_2 + \text{N}_2 \rightarrow \) NH₃</label>
+                <input type="text" id="q1">
+            </div>
+            <div class="question">
+                <label for="q2">2. \( \text{C}_2\text{H}_6 + \text{O}_2 \rightarrow \) CO₂ + H₂O</label>
+                <input type="text" id="q2">
+            </div>
+            <div class="question">
+                <label for="q3">3. \( \text{Al} + \text{O}_2 \rightarrow \) Al₂O₃</label>
+                <input type="text" id="q3">
+            </div>
+            <div class="question">
+                <label for="q4">4. \( \text{Fe} + \text{Cl}_2 \rightarrow \) FeCl₃</label>
+                <input type="text" id="q4">
+            </div>
+            <div class="question">
+                <label for="q5">5. \( \text{Pb(NO}_3\text{)}_2 + \text{KI} \rightarrow \) PbI₂ + KNO₃</label>
+                <input type="text" id="q5">
+            </div>
+            <div class="question">
+                <label for="q6">6. \( \text{Na}_2\text{CO}_3 + \text{HCl} \rightarrow \) NaCl + H₂O + CO₂</label>
+                <input type="text" id="q6">
+            </div>
+            <div class="question">
+                <label for="q7">7. \( \text{C}_4\text{H}_{10} + \text{O}_2 \rightarrow \) CO₂ + H₂O</label>
+                <input type="text" id="q7">
+            </div>
+            <div class="question">
+                <label for="q8">8. \( \text{Ca(OH)}_2 + \text{H}_3\text{PO}_4 \rightarrow \) Ca₃(PO₄)₂ + H₂O</label>
+                <input type="text" id="q8">
+            </div>
+            <div class="question">
+                <label for="q9">9. \( \text{KClO}_3 \rightarrow \) KCl + O₂</label>
+                <input type="text" id="q9">
+            </div>
+            <div class="question">
+                <label for="q10">10. \( \text{C}_6\text{H}_{12}\text{O}_6 \rightarrow \) C₂H₅OH + CO₂</label>
+                <input type="text" id="q10">
+            </div>
+            <button type="button" class="submit-btn" onclick="checkAnswers()">Submit</button>
+        </form>
 
-        <div class="question">
-            <label for="q2">2. <input type="text" id="q2_1" name="q2_1" placeholder="1"> C₂H₆ + <input type="text" id="q2_2" name="q2_2" placeholder="1"> O₂ → <input type="text" id="q2_3" name="q2_3" placeholder="1"> CO₂ + <input type="text" id="q2_4" name="q2_4" placeholder="1"> H₂O</label>
-        </div>
-
-        <div class="question">
-            <label for="q3">3. <input type="text" id="q3_1" name="q3_1" placeholder="1"> Al + <input type="text" id="q3_2" name="q3_2" placeholder="1"> O₂ → <input type="text" id="q3_3" name="q3_3" placeholder="1"> Al₂O₃</label>
-        </div>
-
-        <div class="question">
-            <label for="q4">4. <input type="text" id="q4_1" name="q4_1" placeholder="1"> Fe + <input type="text" id="q4_2" name="q4_2" placeholder="1"> Cl₂ → <input type="text" id="q4_3" name="q4_3" placeholder="1"> FeCl₃</label>
-        </div>
-
-        <div class="question">
-            <label for="q5">5. <input type="text" id="q5_1" name="q5_1" placeholder="1"> Pb(NO₃)₂ + <input type="text" id="q5_2" name="q5_2" placeholder="1"> KI → <input type="text" id="q5_3" name="q5_3" placeholder="1"> PbI₂ + <input type="text" id="q5_4" name="q5_4" placeholder="1"> KNO₃</label>
-        </div>
-
-        <div class="question">
-            <label for="q6">6. <input type="text" id="q6_1" name="q6_1" placeholder="1"> Na₂CO₃ + <input type="text" id="q6_2" name="q6_2" placeholder="1"> HCl → <input type="text" id="q6_3" name="q6_3" placeholder="1"> NaCl + <input type="text" id="q6_4" name="q6_4" placeholder="1"> H₂O + <input type="text" id="q6_5" name="q6_5" placeholder="1"> CO₂</label>
-        </div>
-
-        <div class="question">
-            <label for="q7">7. <input type="text" id="q7_1" name="q7_1" placeholder="1"> C₄H₁₀ + <input type="text" id="q7_2" name="q7_2" placeholder="1"> O₂ → <input type="text" id="q7_3" name="q7_3" placeholder="1"> CO₂ + <input type="text" id="q7_4" name="q7_4" placeholder="1"> H₂O</label>
-        </div>
-
-        <div class="question">
-            <label for="q8">8. <input type="text" id="q8_1" name="q8_1" placeholder="1"> Ca(OH)₂ + <input type="text" id="q8_2" name="q8_2" placeholder="1"> H₃PO₄ → <input type="text" id="q8_3" name="q8_3" placeholder="1"> Ca₃(PO₄)₂ + <input type="text" id="q8_4" name="q8_4" placeholder="1"> H₂O</label>
-        </div>
-
-        <div class="question">
-            <label for="q9">9. <input type="text" id="q9_1" name="q9_1" placeholder="1"> KClO₃ → <input type="text" id="q9_2" name="q9_2" placeholder="1"> KCl + <input type="text" id="q9_3" name="q9_3" placeholder="1"> O₂</label>
-        </div>
-
-        <div class="question">
-            <label for="q10">10. <input type="text" id="q10_1" name="q10_1" placeholder="1"> C₆H₁₂O₆ → <input type="text" id="q10_2" name="q10_2" placeholder="1"> C₂H₅OH + <input type="text" id="q10_3" name="q10_3" placeholder="1"> CO₂</label>
-        </div>
-
-        <button type="button" onclick="checkAnswers()">Submit</button>
-    </form>
-
-    <div id="results" class="result"></div>
+        <div class="results" id="results"></div>
+    </div>
 
     <script>
         function checkAnswers() {
-            const answers = {
-                q1_1: "3", q1_2: "1", q1_3: "2",
-                q2_1: "2", q2_2: "7", q2_3: "4", q2_4: "6",
-                q3_1: "4", q3_2: "3", q3_3: "2",
-                q4_1: "2", q4_2: "3", q4_3: "2",
-                q5_1: "1", q5_2: "2", q5_3: "1", q5_4: "2",
-                q6_1: "1", q6_2: "2", q6_3: "2", q6_4: "1", q6_5: "1",
-                q7_1: "2", q7_2: "13", q7_3: "8", q7_4: "10",
-                q8_1: "3", q8_2: "2", q8_3: "1", q8_4: "6",
-                q9_1: "2", q9_2: "2", q9_3: "3",
-                q10_1: "1", q10_2: "2", q10_3: "2"
-            };
+            const answers = [
+                ["3", "1", "2"],
+                ["2", "7", "4", "6"],
+                ["4", "3", "2"],
+                ["2", "3"],
+                ["1", "2", "2"],
+                ["1", "2", "2"],
+                ["2", "13", "8"],
+                ["1", "6", "3"],
+                ["2", "2"],
+                ["2", "2", "1"]
+            ];
 
-            const form = document.getElementById("quizForm");
+            const quizForm = document.getElementById("quizForm");
             const results = document.getElementById("results");
-            results.innerHTML = "";
-
             let correctCount = 0;
 
-            for (let i = 1; i <= 10; i++) {
-                let correct = true;
-                for (let j = 1; j <= Object.keys(answers).filter(key => key.startsWith(`q${i}_`)).length; j++) {
-                    const userAnswer = form[`q${i}_${j}`].value.trim();
-                    const correctAnswer = answers[`q${i}_${j}`];
+            results.innerHTML = "";
 
-                    if (userAnswer !== correctAnswer) {
-                        correct = false;
-                        results.innerHTML += `<p class="incorrect">Question ${i}: Incorrect. The correct coefficient for ${j === 1 ? '' : j} is <strong>${correctAnswer}</strong>.</p>`;
+            for (let i = 1; i <= 10; i++) {
+                const userAnswer = quizForm[`q${i}`].value.split(" ");
+                const correctAnswer = answers[i - 1];
+                let correct = true;
+
+                if (userAnswer.length !== correctAnswer.length) {
+                    correct = false;
+                } else {
+                    for (let j = 0; j < userAnswer.length; j++) {
+                        if (userAnswer[j] !== correctAnswer[j]) {
+                            correct = false;
+                            results.innerHTML += `<p class="incorrect">Question ${i}: Incorrect. The correct coefficient for ${correctAnswer[j]}.</p>`;
+                        }
                     }
                 }
+
                 if (correct) {
                     results.innerHTML += `<p class="correct">Question ${i}: Correct!</p>`;
                     correctCount++;
