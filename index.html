@@ -7,201 +7,151 @@
     <style>
         body {
             font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-            color: #333;
-            margin: 0;
-            padding: 0;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-        }
-
-        .container {
-            background-color: #fff;
-            border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
-            padding: 20px 40px;
-            max-width: 600px;
-            width: 100%;
             margin: 20px;
+            padding: 20px;
+            background-color: #f7f7f7;
+            color: #333;
         }
 
         h1 {
             text-align: center;
+            font-size: 2em;
             color: #2c3e50;
-            margin-bottom: 20px;
+            margin-bottom: 30px;
         }
 
-        form {
-            display: flex;
-            flex-direction: column;
+        .quiz-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #ffffff;
+            padding: 20px;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
         }
 
         .question {
-            margin-bottom: 20px;
+            margin-bottom: 15px;
+            font-size: 1.2em;
         }
 
-        .question label {
+        input[type="text"] {
+            width: 40px;
+            padding: 5px;
+            font-size: 1em;
+            text-align: center;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        input[type="submit"] {
             display: block;
-            font-weight: bold;
-            margin-bottom: 5px;
-        }
-
-        .question input[type="text"] {
             width: 100%;
             padding: 10px;
-            font-size: 16px;
-            border-radius: 4px;
-            border: 1px solid #ccc;
-            margin-top: 5px;
-            box-sizing: border-box;
-        }
-
-        .question input[type="text"]:focus {
-            border-color: #3498db;
-            outline: none;
-            box-shadow: 0 0 8px rgba(52, 152, 219, 0.3);
-        }
-
-        .submit-btn {
-            background-color: #3498db;
-            color: #fff;
+            font-size: 1.2em;
+            color: #ffffff;
+            background-color: #2c3e50;
             border: none;
-            padding: 15px;
-            font-size: 16px;
             border-radius: 4px;
             cursor: pointer;
             margin-top: 20px;
         }
 
-        .submit-btn:hover {
-            background-color: #2980b9;
-        }
-
-        .results {
-            margin-top: 20px;
-        }
-
-        .correct {
-            color: #27ae60;
-            font-weight: bold;
-        }
-
-        .incorrect {
-            color: #e74c3c;
-            font-weight: bold;
-        }
-
-        .results p {
-            margin: 5px 0;
-        }
-
-        .results p.correct::before {
-            content: "✔ ";
-        }
-
-        .results p.incorrect::before {
-            content: "✖ ";
+        input[type="submit"]:hover {
+            background-color: #34495e;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <h1>Chemistry Balancing Equations Quiz</h1>
-        <form id="quizForm">
-            <div class="question">
-                <label for="q1">1. \( \text{H}_2 + \text{N}_2 \rightarrow \) NH₃</label>
-                <input type="text" id="q1">
-            </div>
-            <div class="question">
-                <label for="q2">2. \( \text{C}_2\text{H}_6 + \text{O}_2 \rightarrow \) CO₂ + H₂O</label>
-                <input type="text" id="q2">
-            </div>
-            <div class="question">
-                <label for="q3">3. \( \text{Al} + \text{O}_2 \rightarrow \) Al₂O₃</label>
-                <input type="text" id="q3">
-            </div>
-            <div class="question">
-                <label for="q4">4. \( \text{Fe} + \text{Cl}_2 \rightarrow \) FeCl₃</label>
-                <input type="text" id="q4">
-            </div>
-            <div class="question">
-                <label for="q5">5. \( \text{Pb(NO}_3\text{)}_2 + \text{KI} \rightarrow \) PbI₂ + KNO₃</label>
-                <input type="text" id="q5">
-            </div>
-            <div class="question">
-                <label for="q6">6. \( \text{Na}_2\text{CO}_3 + \text{HCl} \rightarrow \) NaCl + H₂O + CO₂</label>
-                <input type="text" id="q6">
-            </div>
-            <div class="question">
-                <label for="q7">7. \( \text{C}_4\text{H}_{10} + \text{O}_2 \rightarrow \) CO₂ + H₂O</label>
-                <input type="text" id="q7">
-            </div>
-            <div class="question">
-                <label for="q8">8. \( \text{Ca(OH)}_2 + \text{H}_3\text{PO}_4 \rightarrow \) Ca₃(PO₄)₂ + H₂O</label>
-                <input type="text" id="q8">
-            </div>
-            <div class="question">
-                <label for="q9">9. \( \text{KClO}_3 \rightarrow \) KCl + O₂</label>
-                <input type="text" id="q9">
-            </div>
-            <div class="question">
-                <label for="q10">10. \( \text{C}_6\text{H}_{12}\text{O}_6 \rightarrow \) C₂H₅OH + CO₂</label>
-                <input type="text" id="q10">
-            </div>
-            <button type="button" class="submit-btn" onclick="checkAnswers()">Submit</button>
-        </form>
+    <h1>Chemistry Quiz</h1>
 
-        <div class="results" id="results"></div>
+    <div class="quiz-container">
+        <form id="quizForm">
+            <!-- Question 1 -->
+            <div class="question">
+                1. <input type="text" name="q1_1"> H<sub>2</sub> + <input type="text" name="q1_2"> N<sub>2</sub> → <input type="text" name="q1_3"> NH<sub>3</sub>
+            </div>
+
+            <!-- Question 2 -->
+            <div class="question">
+                2. <input type="text" name="q2_1"> C<sub>2</sub>H<sub>6</sub> + <input type="text" name="q2_2"> O<sub>2</sub> → <input type="text" name="q2_3"> CO<sub>2</sub> + <input type="text" name="q2_4"> H<sub>2</sub>O
+            </div>
+
+            <!-- Question 3 -->
+            <div class="question">
+                3. <input type="text" name="q3_1"> Al + <input type="text" name="q3_2"> O<sub>2</sub> → <input type="text" name="q3_3"> Al<sub>2</sub>O<sub>3</sub>
+            </div>
+
+            <!-- Question 4 -->
+            <div class="question">
+                4. <input type="text" name="q4_1"> Fe + <input type="text" name="q4_2"> Cl<sub>2</sub> → <input type="text" name="q4_3"> FeCl<sub>3</sub>
+            </div>
+
+            <!-- Question 5 -->
+            <div class="question">
+                5. <input type="text" name="q5_1"> Pb(NO<sub>3</sub>)<sub>2</sub> + <input type="text" name="q5_2"> KI → <input type="text" name="q5_3"> PbI<sub>2</sub> + <input type="text" name="q5_4"> KNO<sub>3</sub>
+            </div>
+
+            <!-- Question 6 -->
+            <div class="question">
+                6. <input type="text" name="q6_1"> Na<sub>2</sub>CO<sub>3</sub> + <input type="text" name="q6_2"> HCl → <input type="text" name="q6_3"> NaCl + <input type="text" name="q6_4"> H<sub>2</sub>O + CO<sub>2</sub>
+            </div>
+
+            <!-- Question 7 -->
+            <div class="question">
+                7. <input type="text" name="q7_1"> C<sub>4</sub>H<sub>10</sub> + <input type="text" name="q7_2"> O<sub>2</sub> → <input type="text" name="q7_3"> CO<sub>2</sub> + <input type="text" name="q7_4"> H<sub>2</sub>O
+            </div>
+
+            <!-- Question 8 -->
+            <div class="question">
+                8. <input type="text" name="q8_1"> Ca(OH)<sub>2</sub> + <input type="text" name="q8_2"> H<sub>3</sub>PO<sub>4</sub> → <input type="text" name="q8_3"> Ca<sub>3</sub>(PO<sub>4</sub>)<sub>2</sub> + <input type="text" name="q8_4"> H<sub>2</sub>O
+            </div>
+
+            <!-- Question 9 -->
+            <div class="question">
+                9. <input type="text" name="q9_1"> KClO<sub>3</sub> → <input type="text" name="q9_2"> KCl + <input type="text" name="q9_3"> O<sub>2</sub>
+            </div>
+
+            <!-- Question 10 -->
+            <div class="question">
+                10. <input type="text" name="q10_1"> C<sub>6</sub>H<sub>12</sub>O<sub>6</sub> → <input type="text" name="q10_2"> C<sub>2</sub>H<sub>5</sub>OH + <input type="text" name="q10_3"> CO<sub>2</sub>
+            </div>
+
+            <input type="submit" value="Submit">
+        </form>
     </div>
 
     <script>
-        function checkAnswers() {
-            const answers = [
-                ["3", "1", "2"],
-                ["2", "7", "4", "6"],
-                ["4", "3", "2"],
-                ["2", "3"],
-                ["1", "2", "2"],
-                ["1", "2", "2"],
-                ["2", "13", "8"],
-                ["1", "6", "3"],
-                ["2", "2"],
-                ["2", "2", "1"]
-            ];
+        document.getElementById('quizForm').addEventListener('submit', function(event) {
+            event.preventDefault(); // Prevent the form from submitting
 
-            const quizForm = document.getElementById("quizForm");
-            const results = document.getElementById("results");
-            let correctCount = 0;
-
-            results.innerHTML = "";
+            const answers = {
+                q1_1: ['3'], q1_2: ['1'], q1_3: ['2'],
+                q2_1: ['2'], q2_2: ['7'], q2_3: ['4'], q2_4: ['6'],
+                q3_1: ['4'], q3_2: ['3'], q3_3: ['2'],
+                q4_1: ['2'], q4_2: ['3'], q4_3: ['6'],
+                q5_1: ['1'], q5_2: ['2'], q5_3: ['1'], q5_4: ['2'],
+                q6_1: ['1'], q6_2: ['1'], q6_3: ['1'], q6_4: ['1'],
+                q7_1: ['2'], q7_2: ['6'], q7_3: ['8'], q7_4: ['9'],
+                q8_1: ['2'], q8_2: ['4'], q8_3: ['1'], q8_4: ['2'],
+                q9_1: ['2'], q9_2: ['2'], q9_3: ['3'],
+                q10_1: ['1'], q10_2: ['2'], q10_3: ['2'],
+            };
 
             for (let i = 1; i <= 10; i++) {
-                const userAnswer = quizForm[`q${i}`].value.split(" ");
-                const correctAnswer = answers[i - 1];
-                let correct = true;
-
-                if (userAnswer.length !== correctAnswer.length) {
-                    correct = false;
-                } else {
-                    for (let j = 0; j < userAnswer.length; j++) {
-                        if (userAnswer[j] !== correctAnswer[j]) {
-                            correct = false;
-                            results.innerHTML += `<p class="incorrect">Question ${i}: Incorrect. The correct coefficient for ${correctAnswer[j]}.</p>`;
+                for (let j = 1; j <= 4; j++) {
+                    let questionKey = `q${i}_${j}`;
+                    let inputField = document.querySelector(`input[name=${questionKey}]`);
+                    if (inputField) {
+                        if (answers[questionKey] && answers[questionKey].includes(inputField.value.trim())) {
+                            inputField.style.backgroundColor = 'lightgreen'; // Correct answer
+                        } else {
+                            inputField.style.backgroundColor = 'lightcoral'; // Incorrect answer
                         }
                     }
                 }
-
-                if (correct) {
-                    results.innerHTML += `<p class="correct">Question ${i}: Correct!</p>`;
-                    correctCount++;
-                }
             }
-
-            results.innerHTML += `<p>You got ${correctCount} out of 10 correct.</p>`;
-        }
+        });
     </script>
 
 </body>
